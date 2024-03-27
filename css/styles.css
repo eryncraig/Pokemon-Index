@@ -1,5 +1,31 @@
 /* color theme will likely be shades of light pink */
 
+:root {
+  --primary-color: #FFEECC;
+  --secondary-color: #FFDDCC;
+  --tertiary-color: #FFCCCC;
+  --fourth-color: #FEBBCC;
+  --text-color: #000;
+}
+
 * {
   box-sizing: border-box;
+}
+
+body {
+  background-color: var(--primary-color);
+  color: var(--text-color);
+  font-family: 'Nunito', sans-serif;
+  font-size: 16px;
+  font-weight: 500;
+  max-width: 80%;
+  margin: 0 auto;
+}
+
+div {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  margin: 0 auto;
+  padding: 10px;
 }
