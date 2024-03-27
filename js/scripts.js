@@ -9,12 +9,12 @@ let pokemonList = [
 for (let i = 0; i < pokemonList.length; i++) {
   if (pokemonList[i].weight > 100 && pokemonList[i].weight < 200) {
     console.log('medium');
-    document.write('<div>' + pokemonList[i].name + ' ' + '(' + 'weight: ' + pokemonList[i].weight + ')' + ' It\'s a medium pokemon.</div>')
+    document.write('<div>' + pokemonList[i].name + ' (weight: ' + pokemonList[i].weight + ') It\'s a medium pokemon.</div>')
   } else if (pokemonList[i].weight < 100) {
     console.log('small');
-    document.write('<div>' + pokemonList[i].name + ' ' + '(' + 'weight: ' + pokemonList[i].weight + ')' + ' That pokemon is so small! </div> ')
+    document.write('<div>' + pokemonList[i].name + ' (weight: ' + pokemonList[i].weight + ') That pokemon is so small! </div> ')
   } else {
     console.log('big');
-    document.write('<div>' + pokemonList[i].name + ' ' + '(' + 'weight: ' + pokemonList[i].weight + ')' + ' Wow! That\'s a big pokemon!</div>')
+    document.write('<div>' + pokemonList[i].name + ' (weight: ' + pokemonList[i].weight + ') Wow! That\'s a big pokemon!</div>')
   }
 }
