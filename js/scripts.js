@@ -1,9 +1,21 @@
-// starting setup of controlled global variables
+// starting setup of controlled global variables/controlled state; uses IIFE
 let pokemonRepository = (function () {
-  let pokemonList = [];
+  let pokemonList = [
+    { name: 'Beedrill', weight: 125, types: ['bug ', 'poison '] },
+    { name: 'Bulbasaur', weight: 240, types: ['grass ', 'poison '] },
+    { name: 'Zebstrika', weight: 350, types: ['normal ', 'electric '] },
+  ];
 
   function add(pokemon) {
-    pokemonList.push(pokemon);
+    let expectedTraits = ['name', 'weight', 'types'];
+    let actualTraits = Object.keys(pokemon);
+    console.log(Object.keys(pokemon));
+
+    if (typeof pokemon === "object" && actualTraits.every(key => expectedTraits.includes(key))) {
+      pokemonList.push(pokemon);
+    } else if (typeof pokemon !== "object") {
+      console.log('You are trying to add a non-pokemon! Check your formatting.')
+    }
   }
 
   function getAll() {
@@ -15,35 +27,37 @@ let pokemonRepository = (function () {
     add: add
   }
 })();
+//end of IIFE for now
 
-//different style of 'for' loop with conditionals inside to print different things based on pokemon weight. Originally had a shorthand 'for' loop version but preferred conditions be set this way for scaling; UPDATE 3/27 - turned loop into function for re-use
-function printArrayDetails(list) {
-  for (let i = 0; i < list.length; i++) {
-    if (list[i].weight > 100 && list[i].weight < 200) {
+
+//testing function
+pokemonRepository.add(
+  {
+    name: 'Pidgeot',
+    weight: 70,
+    types: ['normal', 'flying']
+  }
+);
+
+
+//updated loop to a forEach loop instead of an old 'for' loop
+function printArrayDetails() {
+  let pokemonDex = pokemonRepository.getAll();
+
+  pokemonDex.forEach(function (list) {
+    if (list.weight > 100 && list.weight < 200) {
       console.log('medium');
-      document.write('<div>' + list[i].name + ' (weight: ' + list[i].weight + ') It\'s a medium pokemon.</div>')
-    } else if (list[i].weight < 100) {
+      document.write('<div>' + list.name + ' (weight: ' + list.weight + ') It\'s a medium pokemon.</div>')
+    } else if (list.weight < 100) {
       console.log('small');
-      document.write('<div>' + list[i].name + ' (weight: ' + list[i].weight + ') That pokemon is so small! </div> ')
+      document.write('<div>' + list.name + ' (weight: ' + list.weight + ') That pokemon is so small! </div> ')
     } else {
       console.log('big');
-      document.write('<div>' + list[i].name + ' (weight: ' + list[i].weight + ') Wow! That\'s a big pokemon!</div>')
+      document.write('<div>' + list.name + ' (weight: ' + list.weight + ') Wow! That\'s a big pokemon!</div>')
     }
-  }
+  })
 }
 
-printArrayDetails(pokemonList);
+//only current output/display/html elements on ui, no interactive function yet
+printArrayDetails();
 
-function dividing(dividend, divisor) {
-  if (divisor === 0) {
-    return 'You are trying to divide by 0.'
-  } else {
-    let result = dividend / divisor;
-    return result
-  }
-}
-
-console.log(dividing(4, 2));
-console.log(dividing(7, 0));
-console.log(dividing(1, 4));
-console.log(dividing(12, -3));
