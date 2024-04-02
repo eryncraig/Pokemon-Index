@@ -9,6 +9,8 @@ let pokemonRepository = (function () {
   function add(pokemon) {
     let expectedTraits = ['name', 'weight', 'types'];
     let actualTraits = Object.keys(pokemon);
+
+    //making sure object.keys is getting the correct keys
     console.log(Object.keys(pokemon));
 
     if (typeof pokemon === "object" && actualTraits.every(key => expectedTraits.includes(key))) {
@@ -30,7 +32,7 @@ let pokemonRepository = (function () {
 //end of IIFE for now
 
 
-//testing function
+//testing add function
 pokemonRepository.add(
   {
     name: 'Pidgeot',
