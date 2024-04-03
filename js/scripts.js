@@ -13,6 +13,7 @@ let pokemonRepository = (function () {
     //making sure object.keys is getting the correct keys
     console.log(Object.keys(pokemon));
 
+    //conidtional to check if pokemon being added is formatted correctly/doesn't include extraneous code
     if (typeof pokemon === "object" && actualTraits.every(key => expectedTraits.includes(key))) {
       pokemonList.push(pokemon);
     } else if (typeof pokemon !== "object") {
@@ -20,13 +21,27 @@ let pokemonRepository = (function () {
     }
   }
 
+  //created function that adds ul and li elements and allows styling for each iterated item
+  function addListItem(pokemon) {
+    let listItem = document.createElement('li');
+    let button = document.createElement('button');
+    let pokeUL = document.querySelector('.pokemon-list');
+
+    button.innerText = pokemon.name;
+    button.classList.add('pokemon-button');
+
+    listItem.appendChild(button);
+    pokeUL.appendChild(listItem);
+  };
+
   function getAll() {
     return pokemonList;
   }
 
   return {
     getAll: getAll,
-    add: add
+    add: add,
+    addListItem: addListItem
   }
 })();
 //end of IIFE for now
@@ -47,15 +62,14 @@ function printArrayDetails() {
   let pokemonDex = pokemonRepository.getAll();
 
   pokemonDex.forEach(function (list) {
+    pokemonRepository.addListItem(list);
+
     if (list.weight > 100 && list.weight < 200) {
       console.log('medium');
-      document.write('<div>' + list.name + ' (weight: ' + list.weight + ') It\'s a medium pokemon.</div>')
     } else if (list.weight < 100) {
       console.log('small');
-      document.write('<div>' + list.name + ' (weight: ' + list.weight + ') That pokemon is so small! </div> ')
     } else {
       console.log('big');
-      document.write('<div>' + list.name + ' (weight: ' + list.weight + ') Wow! That\'s a big pokemon!</div>')
     }
   })
 }

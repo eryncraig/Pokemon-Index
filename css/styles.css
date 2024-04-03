@@ -5,6 +5,7 @@
   --secondary-color: #FFDDCC;
   --tertiary-color: #FFCCCC;
   --fourth-color: #FEBBCC;
+  --fifth-color: #FF8E8F;
   --text-color: #000;
 }
 
@@ -28,4 +29,19 @@ div {
   text-align: center;
   margin: 0 auto;
   padding: 10px;
+}
+
+ul {
+  list-style-type: none;
+}
+
+.pokemon-button {
+  background-color: var(--fourth-color);
+  color: var(--text-color);
+  border-width: 2px;
+  border-color: var(--fifth-color);
+  border-radius: 15px;
+  width: 100%;
+  margin: 0.5em auto;
+  padding: 5px;
 }
