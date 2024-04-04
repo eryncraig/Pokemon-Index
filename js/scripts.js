@@ -6,6 +6,7 @@ let pokemonRepository = (function () {
     { name: 'Zebstrika', weight: 350, types: ['normal ', 'electric '] },
   ];
 
+  //function to add new pokemon to the list - currently only in testing
   function add(pokemon) {
     let expectedTraits = ['name', 'weight', 'types'];
     let actualTraits = Object.keys(pokemon);
@@ -20,6 +21,7 @@ let pokemonRepository = (function () {
       console.log('You are trying to add a non-pokemon! Check your formatting.')
     }
   }
+  //end of add function
 
   //created function that adds ul and li elements and allows styling for each iterated item
   function addListItem(pokemon) {
@@ -32,7 +34,8 @@ let pokemonRepository = (function () {
 
     listItem.appendChild(button);
     pokeUL.appendChild(listItem);
-  };
+  }
+  //end of addListItem
 
   function getAll() {
     return pokemonList;
@@ -57,7 +60,7 @@ pokemonRepository.add(
 );
 
 
-//updated loop to a forEach loop instead of an old 'for' loop
+//updated loop to a forEach loop instead of an old 'for' loop - console logging is for debugging for now
 function printArrayDetails() {
   let pokemonDex = pokemonRepository.getAll();
 

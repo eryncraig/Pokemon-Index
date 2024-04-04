@@ -35,6 +35,8 @@ ul {
   list-style-type: none;
 }
 
+
+/* Specific only to the button - remember to style li element if needed as it is the parent */
 .pokemon-button {
   background-color: var(--fourth-color);
   color: var(--text-color);
@@ -43,5 +45,5 @@ ul {
   border-radius: 15px;
   width: 100%;
   margin: 0.5em auto;
-  padding: 5px;
+  padding: 5px; 
 }
