@@ -1,5 +1,6 @@
 // starting setup of controlled global variables/controlled state; uses IIFE
 let pokemonRepository = (function () {
+  //temporary placeholder array until app is connected to API and database
   let pokemonList = [
     { name: 'Beedrill', weight: 125, types: ['bug ', 'poison '] },
     { name: 'Bulbasaur', weight: 240, types: ['grass ', 'poison '] },
@@ -34,9 +35,27 @@ let pokemonRepository = (function () {
 
     listItem.appendChild(button);
     pokeUL.appendChild(listItem);
-  }
-  //end of addListItem
 
+    buttonListener(button, pokemon);
+  }
+  //end of addListItem function
+
+
+  //created event handler function outside of IIFE for re-use or re-organization later if needed
+  function buttonListener(button, pokemon) {
+    button.addEventListener('click', function (event) {
+      //double-checking event is listened to
+      console.log(event);
+      showDetails(pokemon);
+    });
+  }
+
+  //start of function to return pokemon details, simply logging them to console for now
+  function showDetails(pokemon) {
+    console.log(pokemon)
+  }
+
+  //function to allow return of array outside of IIFE but so array is not directly accessible or editable
   function getAll() {
     return pokemonList;
   }

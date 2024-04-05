@@ -47,3 +47,7 @@ ul {
   margin: 0.5em auto;
   padding: 5px; 
 }
+
+.pokemon-button:hover, .pokemon-button:active {
+  cursor: pointer;
+}
