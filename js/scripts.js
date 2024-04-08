@@ -6,15 +6,12 @@ let pokemonRepository = (function () {
 
   //function to add new pokemon to the list 
   function add(pokemon) {
-    // let expectedTraits = ['name', 'weight', 'types'];
-    // let actualTraits = Object.keys(pokemon);
 
-    //making sure object.keys is getting the correct keys
-    console.log(Object.keys(pokemon));
-
-    //conidtional to check if pokemon being added is formatted correctly/doesn't include extraneous code
-    if (typeof pokemon === "object" && 'name' in pokemon && 'height' in pokemon && 'types' in pokemon) {
+    //conditional to check if pokemon being added is formatted correctly/doesn't include extraneous code
+    // temporarily removed from conditional: '&& 'height' in pokemon && 'types' in pokemon'
+    if (typeof pokemon === "object" && 'name' in pokemon) {
       pokemonList.push(pokemon);
+      console.log(pokemon);
     } else if (typeof pokemon !== "object") {
       console.log('You are trying to add a non-pokemon! Check your formatting.')
     }
@@ -60,7 +57,10 @@ let pokemonRepository = (function () {
   }
 
   function loadList() {
+    showLoadingMessage();
+
     return fetch(apiUrl).then(function (response) {
+      hideLoadingMessage();
       return response.json();
     }).then(function (json) {
       json.results.forEach(function (item) {
@@ -71,23 +71,49 @@ let pokemonRepository = (function () {
         add(pokemon);
       });
     }).catch(function (e) {
+      hideLoadingMessage();
       console.error(e);
     });
   }
 
-
+  // accesses api information for each pokemon once load list has completed and once a button is clicked; may edit loading message for buttons specifically
   function loadDetails(item) {
+    showLoadingMessage();
     let url = item.detailsUrl;
     return fetch(url).then(function (response) {
+      hideLoadingMessage();
       return response.json();
     }).then(function (details) {
       item.imageUrl = details.sprites.front_default;
       item.height = details.height;
       item.types = details.types;
     }).catch(function (e) {
+      hideLoadingMessage();
       console.error(e);
     });
   }
+
+  // function to show 'loading' while api is connecting (currently very fast, barely see this)
+  function showLoadingMessage() {
+    let message = document.createElement('li')
+    let pokeUL = document.querySelector('.pokemon-list');
+
+    message.classList.add('loading-message');
+    message.innerText = 'Loading...';
+
+    pokeUL.appendChild(message);
+  }
+
+  // hides 'loading' once API is connected
+  function hideLoadingMessage() {
+    let message = document.querySelector('.loading-message');
+
+    if (message) {
+      message.parentElement.removeChild(message);
+    } else {
+      console.log('loading message still showing')
+    };
+  };
 
   return {
     getAll: getAll,
@@ -100,42 +126,11 @@ let pokemonRepository = (function () {
 //end of IIFE for now
 
 
+//Combination of intended functions to return application and interactivity
 pokemonRepository.loadList().then(function () {
   pokemonRepository.getAll().forEach(function (pokemon) {
     pokemonRepository.addListItem(pokemon);
   });
 });
 
-
-// all code below is deprecated and only kept for reference by the author
-
-//testing add function
-// pokemonRepository.add(
-//   {
-//     name: 'Pidgeot',
-//     weight: 70,
-//     types: ['normal', 'flying']
-//   }
-// );
-
-
-//updated loop to a forEach loop instead of an old 'for' loop - console logging is for debugging for now
-// function printArrayDetails() {
-//   let pokemonDex = pokemonRepository.getAll();
-
-//   pokemonDex.forEach(function (list) {
-//     pokemonRepository.addListItem(list);
-
-//     if (list.weight > 100 && list.weight < 200) {
-//       console.log('medium');
-//     } else if (list.weight < 100) {
-//       console.log('small');
-//     } else {
-//       console.log('big');
-//     }
-//   })
-// }
-
-//only current output/display/html elements on ui, no interactive function yet
-// printArrayDetails();
 
