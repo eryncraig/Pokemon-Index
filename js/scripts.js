@@ -2,7 +2,7 @@
 let pokemonRepository = (function () {
   //adding API data/connecting to it
   let pokemonList = [];
-  let apiUrl = 'https://pokeapi.co/api/v2/pokemon/?limit=150';
+  let apiUrl = 'https://pokeapi.co/api/v2/pokemon/?limit=250';
 
   //re-usable variable for modals
   let modalContainer = document.querySelector('#modal-container');
@@ -42,8 +42,6 @@ let pokemonRepository = (function () {
   //created event handler function outside of IIFE for re-use or re-organization later if needed
   function buttonListener(button, pokemon) {
     button.addEventListener('click', function () {
-      //double-checking event is listened to
-      // console.log(event);
       showDetails(pokemon);
     });
   }
@@ -58,7 +56,12 @@ let pokemonRepository = (function () {
     let closeButtonElement = document.createElement('button');
     closeButtonElement.classList.add('close-button');
     closeButtonElement.innerText = 'Close';
-    closeButtonElement.addEventListener('click', hidePokeModal);
+    // closeButtonElement.addEventListener('click', hidePokeModal);
+    closeButtonElement.addEventListener('pointerdown', (e) => {
+      if (e.target === closeButtonElement) {
+        hidePokeModal();
+      }
+    })
 
     let nameElement = document.createElement('h1');
     nameElement.innerText = name;
