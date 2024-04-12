@@ -29,8 +29,8 @@ body {
 h1 {
   color: var(--fifth-color);
   text-align: center;
-  margin: auto;
-  padding: 20px;
+  margin: 0.75rem;
+  padding: 2rem;
 }
 
 
@@ -117,5 +117,13 @@ ul {
 }
 
 .pokemon-image {
-  height: 200px;
+  height: 15vw;
+}
+
+.close-button {
+  float: right;
+  margin: auto;
+  background-color: var(--fifth-color);
+  border-radius: 3px;
+  padding: 4px;
 }

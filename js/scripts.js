@@ -41,8 +41,11 @@ let pokemonRepository = (function () {
 
   //created event handler function outside of IIFE for re-use or re-organization later if needed
   function buttonListener(button, pokemon) {
-    button.addEventListener('click', function () {
-      showDetails(pokemon);
+    button.addEventListener('pointerdown', function (e) {
+      let b = e.target;
+      if (b === button) {
+        showDetails(pokemon);
+      }
     });
   }
 
@@ -56,7 +59,6 @@ let pokemonRepository = (function () {
     let closeButtonElement = document.createElement('button');
     closeButtonElement.classList.add('close-button');
     closeButtonElement.innerText = 'Close';
-    // closeButtonElement.addEventListener('click', hidePokeModal);
     closeButtonElement.addEventListener('pointerdown', (e) => {
       if (e.target === closeButtonElement) {
         hidePokeModal();
@@ -87,7 +89,7 @@ let pokemonRepository = (function () {
     modalContainer.classList.remove('is-visible');
   }
 
-  modalContainer.addEventListener('click', (e) => {
+  modalContainer.addEventListener('pointerdown', (e) => {
     let target = e.target;
     if (target === modalContainer) {
       hidePokeModal();
