@@ -24,9 +24,22 @@ body {
   text-transform: uppercase;
 }
 
+h1 {
+  color: var(--fifth-color);
+  text-align: center;
+  margin: auto;
+  padding: 20px;
+}
+
 
 ul {
   list-style-type: none;
+  width: 80%;
+}
+
+.list-container {
+  display: flex;
+  justify-content: center;
 }
 
 #modal-container {
@@ -47,6 +60,7 @@ ul {
   overflow: auto; 
   display: grid;
   text-align: center;
+  overflow: auto;
 }
 
 
@@ -61,6 +75,7 @@ ul {
   margin: 0.5em auto;
   padding: 8px; 
   text-transform: uppercase;
+  align-items: center;
   font-family: 'Nunito', sans-serif;
 }
 
