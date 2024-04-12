@@ -50,6 +50,7 @@ let pokemonRepository = (function () {
 
   //created reusable modal function 
   function showPokeModal(name, height, image) {
+    modalContainer.innerHTML = '';
 
     let pokeModal = document.createElement('div');
     pokeModal.classList.add('poke-modal');
@@ -82,6 +83,19 @@ let pokemonRepository = (function () {
   function hidePokeModal() {
     modalContainer.classList.remove('is-visible');
   }
+
+  modalContainer.addEventListener('click', (e) => {
+    let target = e.target;
+    if (target === modalContainer) {
+      hidePokeModal();
+    }
+  });
+
+  window.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') {
+      hidePokeModal();
+    }
+  });
 
 
   //start of function to return pokemon details, simply logging them to console for now. Uses loadDetails function defined below and fulfills promise to log to console.
