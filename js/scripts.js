@@ -4,19 +4,23 @@ let pokemonRepository = (function () {
   let pokemonList = [];
   let apiUrl = 'https://pokeapi.co/api/v2/pokemon/?limit=150';
 
+  //re-usable variable for modals
+  let modalContainer = document.querySelector('#modal-container');
+
+
   //function to add new pokemon to the list 
   function add(pokemon) {
-
     //conditional to check if pokemon being added is formatted correctly/doesn't include extraneous code
     // temporarily removed from conditional: '&& 'height' in pokemon && 'types' in pokemon'
     if (typeof pokemon === "object" && 'name' in pokemon) {
       pokemonList.push(pokemon);
-      console.log(pokemon);
+      // console.log(pokemon);
     } else if (typeof pokemon !== "object") {
       console.log('You are trying to add a non-pokemon! Check your formatting.')
     }
   }
   //end of add function
+
 
   //created function that adds ul and li elements and allows styling for each iterated item
   function addListItem(pokemon) {
@@ -37,25 +41,64 @@ let pokemonRepository = (function () {
 
   //created event handler function outside of IIFE for re-use or re-organization later if needed
   function buttonListener(button, pokemon) {
-    button.addEventListener('click', function (event) {
+    button.addEventListener('click', function () {
       //double-checking event is listened to
-      console.log(event);
+      // console.log(event);
       showDetails(pokemon);
     });
   }
 
-  //start of function to return pokemon details, simply logging them to console for now
+  //created reusable modal function 
+  function showPokeModal(name, height, image) {
+
+    let pokeModal = document.createElement('div');
+    pokeModal.classList.add('poke-modal');
+
+    let closeButtonElement = document.createElement('button');
+    closeButtonElement.classList.add('close-button');
+    closeButtonElement.innerText = 'Close';
+    closeButtonElement.addEventListener('click', hidePokeModal);
+
+    let nameElement = document.createElement('h1');
+    nameElement.innerText = name;
+
+    let heightElement = document.createElement('h3');
+    heightElement.innerText = 'Height: ' + height;
+
+    let imageElement = document.createElement('img');
+    imageElement.classList.add('pokemon-image')
+    imageElement.setAttribute('src', image);
+    imageElement.setAttribute('alt', 'An image of the pokemon, ' + name);
+
+    pokeModal.appendChild(closeButtonElement);
+    pokeModal.appendChild(nameElement);
+    pokeModal.appendChild(heightElement);
+    pokeModal.appendChild(imageElement);
+    modalContainer.appendChild(pokeModal);
+
+    modalContainer.classList.add('is-visible');
+  }
+
+  function hidePokeModal() {
+    modalContainer.classList.remove('is-visible');
+  }
+
+
+  //start of function to return pokemon details, simply logging them to console for now. Uses loadDetails function defined below and fulfills promise to log to console.
   function showDetails(pokemon) {
     loadDetails(pokemon).then(function () {
-      console.log(pokemon);
+      showPokeModal(pokemon.name, pokemon.height, pokemon.imageUrl);
     });
   }
+
 
   //function to allow return of array outside of IIFE but so array is not directly accessible or editable
   function getAll() {
     return pokemonList;
   }
 
+
+  // function to fetch and jsonify data from the API; assigns a (data) object to a pokemon variable and loops through each iteration; includes fetch promise
   function loadList() {
     showLoadingMessage();
 
@@ -76,7 +119,8 @@ let pokemonRepository = (function () {
     });
   }
 
-  // accesses api information for each pokemon once load list has completed and once a button is clicked; may edit loading message for buttons specifically
+
+  // function accesses api information for each pokemon once load list has completed and once a button is clicked; may edit loading message for buttons specifically
   function loadDetails(item) {
     showLoadingMessage();
     let url = item.detailsUrl;
@@ -84,6 +128,7 @@ let pokemonRepository = (function () {
       hideLoadingMessage();
       return response.json();
     }).then(function (details) {
+      item.name = item.name;
       item.imageUrl = details.sprites.front_default;
       item.height = details.height;
       item.types = details.types;
@@ -95,14 +140,15 @@ let pokemonRepository = (function () {
 
   // function to show 'loading' while api is connecting (currently very fast, barely see this)
   function showLoadingMessage() {
-    let message = document.createElement('li')
+    let message = document.createElement('img')
     let pokeUL = document.querySelector('.pokemon-list');
 
     message.classList.add('loading-message');
-    message.innerText = 'Loading...';
+    message.src = './images/pokeball-load.png';
 
     pokeUL.appendChild(message);
   }
+
 
   // hides 'loading' once API is connected
   function hideLoadingMessage() {
@@ -114,6 +160,7 @@ let pokemonRepository = (function () {
       console.log('loading message still showing')
     };
   };
+
 
   return {
     getAll: getAll,
