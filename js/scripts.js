@@ -89,6 +89,8 @@ let pokemonRepository = (function () {
     modalContainer.classList.remove('is-visible');
   }
 
+
+  //Event listeners using PointerEvents API; currently have PE polyfill included, will need review periodically; these actions are for interaction with the modal
   modalContainer.addEventListener('pointerdown', (e) => {
     let target = e.target;
     if (target === modalContainer) {
