@@ -2,7 +2,7 @@
 let pokemonRepository = (function () {
   //adding API data/connecting to it
   let pokemonList = [];
-  let apiUrl = 'https://pokeapi.co/api/v2/pokemon/?limit=250';
+  let apiUrl = 'https://pokeapi.co/api/v2/pokemon/?limit=500';
 
 
   // function to fetch and jsonify data from the API; assigns a (data) object to a pokemon variable and loops through each iteration; includes fetch promise
@@ -47,7 +47,6 @@ let pokemonRepository = (function () {
       let b = e.target;
       if (b === button) {
         showDetails(pokemon);
-        console.log(pokemon);
       }
     });
   }
@@ -61,6 +60,7 @@ let pokemonRepository = (function () {
 
     button.innerText = pokemon.name;
     button.classList.add('pokemon-button');
+    button.id = pokemon.name;
     button.setAttribute('data-toggle', 'modal');
     button.setAttribute('data-target', '#modal-container');
 

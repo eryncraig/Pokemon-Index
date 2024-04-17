@@ -24,14 +24,31 @@
 </head>
 
 <body>
-  <nav class="navbar navbar-light navbar-expand-lg fixed-top">
-    <a class="navbar-brand" href="#">The Pink Pokedex</a>
+  <nav class="navbar navbar-light navbar-expand-lg fixed-top border-bottom border-dark">
+    <a class="navbar-brand col-8" href="#bulbasaur">The Pink Pokedex</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+      aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse">
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item">
+          <a class="nav-link" href="#chikorita">Second Generation</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#treecko">Third Generation</a>
+        </li>
+      </ul>
+    </div>
   </nav>
+
   <div class="list-container">
     <ul class="pokemon-list">
 
     </ul>
   </div>
+
   <div class="modal fade" id="modal-container" tabindex="-1" role="dialog" aria-labelledby="moda-label"
     aria-hidden="true">
     <div class="modal-dialog" role="document">
