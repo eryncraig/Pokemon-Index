@@ -50,6 +50,13 @@ h1 {
   justify-content: center;
 }
 
+.modal-content {
+  background-color: var(--fourth-color);
+  border: 3px #ff8e8f;
+}
+
+
+/* Below is styling for my own custom modals */
 #modal-container {
   display: none;
 }
