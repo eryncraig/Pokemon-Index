@@ -42,6 +42,7 @@ h1 {
 ul {
   list-style-type: none;
   width: 80%;
+  margin-top: 60px;
 }
 
 .list-container {
