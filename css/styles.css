@@ -38,6 +38,12 @@ h1 {
   padding: 2rem;
 }
 
+.anchor{
+  display: block;
+  height: 150px; 
+  margin-top: -150px; 
+  visibility: hidden;
+}
 
 .pokemon-list {
   list-style-type: none;
