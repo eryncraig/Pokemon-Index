@@ -1,7 +1,7 @@
-#The Pink Pokedex
-###A simple javascript app to showcase some skills
+# The Pink Pokedex
+### A simple javascript app to showcase some skills
 
-**Description**
+### Description
 I made this app to improve my general Javascript skills as well as to have something that shows them off! It is almost all vanilla js, except for the modals that use jQuery and Bootstrap. They were included since those libraries are so often used with js, but not anywhere else because I wanted to keep the application small and quick.
 
 The other purpose of the app is of course to be used as a pokedex! Eventually I may implement a search feature, but right now you can navigate to the start of each generation of pokemon using the navbar.
@@ -9,20 +9,26 @@ The other purpose of the app is of course to be used as a pokedex! Eventually I 
 To view the app visit this link: [Pink Pokedex](https://eryncraig.github.io/Pokemon-Index/)
 To use it, navigate to the name of the pokemon you wish to view more information about, and click on it. A modal will appear with the pokemon image and a few stats.
 
- **Dependencies and Languages**
+ ### Dependencies and Languages:
+ 
 Fetch and promise polyfills
+
 Bootstrap
+
 Javascript
+
 CSS
+
 HTML
+
 jQuery
 
-This app is using minified versions to speed the response. It is not entirely necessary for this small of an app, but I still want to stick to best practices.
+*This app is using minified versions to speed the response. It is not entirely necessary for this small of an app, but I still want to stick to best practices.
 
-**Issues**
+### Issues:
 Currently none, please report them here if they appear.
 
-**To use the code**
+### To use the code:
 It will always run best on Google Chrome, but it is supported elsewhere as well, so you should be able to use your browser of choice. Internet Explorer may cause problems.
 
 Be sure to have javascript allowed on your machine/browser. This app runs on javascript and will not run if js is not allowed or in use.
@@ -37,7 +43,7 @@ If you reuse or edit this code, pay close attention to the syntax being used. Th
 
 This app is currently hosted on Github Pages.
 
-**Design Choices**
+### Design Choices
 
 Clearly, pink is the theme! I wanted to make my pokedex more soft and welcoming in appearance than the usual loud reds and blues it usually comes in. Especially using pink, which typically implies girliness; this was also considered, and I really want to make things like pokemon and 'boyish' games or toys feel more inclusive for girls too. This is not to say all girls like pink! It's more of a stance I felt the project should take, and color is always a good place to start.
 
